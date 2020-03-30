@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import { Consumer } from 'components/LayoutContext';
+import { Consumer } from './LayoutContext';
 
 const {
   multiply,

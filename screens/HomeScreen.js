@@ -10,19 +10,37 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 import { WebBrowser } from "expo";
-import CardTransition from "components/CardTransition";
-import autobind from "autobind-decorator";
+import CardTransition from "../components/CardTransition";
+import { setCurrentSession } from "../utils";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
-  @autobind
+  constructor(props) {
+    super(props);
+    this.onClickNewQuiz = this.onClickNewQuiz.bind(this);
+    this.onLogout = this.onLogout.bind(this);
+  }
+
+  componentDidMount() {
+
+  }
+
   onClickNewQuiz() {
     const { navigate } = this.props.navigation;
 
     navigate("StartQuiz");
+  }
+
+  async onLogout() {
+    try {
+      await setCurrentSession('');
+      
+    } catch (e) {
+      console.log('onLogout e', e)
+    }
   }
 
   render_() {
@@ -46,6 +64,13 @@ export default class HomeScreen extends React.Component {
               buttonStyle={styles.newQuizButton}
               title="Start Quiz"
               onPress={this.onClickNewQuiz}
+            />
+          </View>
+          <View style={styles.logoutContainer}>
+            <Button
+              buttonStyle={styles.newQuizButton}
+              title="Log Out"
+              onPress={this.onLogout}
             />
           </View>
         </ScrollView>
@@ -105,6 +130,11 @@ const styles = StyleSheet.create({
   newQuizContainer: {
     alignItems: "center",
     marginHorizontal: 25
+  },
+  logoutContainer: {
+    alignItems: "center",
+    marginHorizontal: 25,
+    marginTop: 40
   },
   bgImage: {
     width: 100,

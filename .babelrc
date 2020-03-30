@@ -1,32 +1,3 @@
 {
-  "presets": ["babel-preset-expo"],
-  "plugins": [
-    [
-      "module-resolver",
-      {
-        "cwd": "babelrc",
-        "root": ["./"],
-        "extensions": [
-          ".js",
-          ".ios.js",
-          ".android.js",
-          ".native.js",
-          ".web.js"
-        ],
-        "alias": {
-          "services": "./services",
-          "config": "./config",
-          "components": "./components",
-          "reduxFolder": "./redux",
-          "utils": "./utils"
-        }
-      }
-    ]
-  ],
-  "env": {
-    "production": {
-      "plugins": [
-      ]
-    }
-  }
+  "presets": ["module:metro-react-native-babel-preset", "module:react-native-dotenv"]
 }

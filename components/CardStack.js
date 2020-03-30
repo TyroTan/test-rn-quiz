@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { createStackNavigator, StackRouter } from "@react-navigation/core";
 import { Transitioner } from "react-navigation-transitioner";
-import CardTransition from "components/CardTransition";
+import CardTransition from "./CardTransition";
 
 const View = props => (
   <UnstyledView

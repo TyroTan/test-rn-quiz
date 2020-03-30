@@ -1,4 +1,4 @@
-import { clone } from "utils/js-util";
+import { clone } from "../../utils/js-util";
 import {
   FETCH_USER_ANSWERS,
   DONE_USER_ANSWERS,
@@ -6,7 +6,7 @@ import {
   ERROR_USER_ANSWERS,
   PUSH_USER_ANSWER,
   SET_CURRENT_RECORD
-} from "redux/constants";
+} from "../constants";
 const initialState = {
   answers: [],
   currentRecord: {},

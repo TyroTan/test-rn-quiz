@@ -6,7 +6,7 @@ import {
   SET_QUESTIONS,
   START_TIME,
   END_TIME
-} from "redux/constants";
+} from "../constants";
 const initialState = { questionsList: [], startTime: null, endTime: null, loading: false, error: false };
 
 export default function QuestionsList(state = initialState, { type, payload }) {

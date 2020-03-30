@@ -1,4 +1,4 @@
-import { FETCH_QUESTIONS, START_TIME, END_TIME } from "redux/constants";
+import { FETCH_QUESTIONS, START_TIME, END_TIME } from "../constants";
 
 export function fetchQuestions() {
   return {

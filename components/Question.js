@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Animated, ScrollView, StyleSheet, Text } from "react-native";
 import { Button as ButtonEl } from "react-native-elements";
-import { getShuffle1_4 } from "utils/js-util";
-import autobind from "autobind-decorator";
+import { getShuffle1_4 } from "../utils/js-util";
 const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
 
@@ -14,6 +13,8 @@ export default class Question extends Component {
     this.state = {
       fadeAnim: new Animated.Value(1)
     };
+
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
 
   componentDidUpdate(newProps) {
@@ -31,7 +32,6 @@ export default class Question extends Component {
     ).start();
   }
 
-  @autobind
   onButtonPress(c) {
     const { onAnswer } = this.props;
     this.setState(

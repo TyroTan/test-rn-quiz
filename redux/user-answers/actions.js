@@ -1,4 +1,4 @@
-import { PUSH_USER_ANSWER, SET_CURRENT_RECORD } from 'redux/constants';
+import { PUSH_USER_ANSWER, SET_CURRENT_RECORD } from '../constants';
 
 export function pushUserAnswer(payload) {
   return {

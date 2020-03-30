@@ -1,4 +1,4 @@
-import { apiURL } from "config/constants";
+import { apiURL } from "../config/constants";
 const axios = require("axios");
 
 const API_URL = apiURL;

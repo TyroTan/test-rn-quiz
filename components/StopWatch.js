@@ -1,15 +1,15 @@
 import React, { PureComponent } from "react";
 import { Text, View } from "react-native";
-import { getHumanReadableTime } from "utils/js-util";
-import autobind from 'autobind-decorator';
+import { getHumanReadableTime } from "../utils/js-util";
 
 export default class StopWatch extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { currentCount: this.props.start || 0 };
+
+    this.timer = this.timer.bind(this);
   }
 
-  @autobind
   timer() {
     this.setState({
       currentCount: this.state.currentCount + 1

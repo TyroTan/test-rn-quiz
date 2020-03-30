@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AirbnbRating, Button, Card, Icon } from "react-native-elements";
 import { connect } from "react-redux";
-import { getHumanReadableTime } from "utils/js-util";
-import autobind from "autobind-decorator";
-import rtt from "reactotron-react-native";
+import { getHumanReadableTime } from "../utils/js-util";
 
 class ResultsScreen extends Component {
   static navigationOptions = {
     title: "Results"
   };
 
-  @autobind
+  constructor(props) {
+    super(props);
+    this.onPlayAgain = this.onPlayAgain.bind(this);
+  }
+
   onPlayAgain() {
     this.props.navigation.navigate("StartQuiz");
   }

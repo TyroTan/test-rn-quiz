@@ -1,7 +1,7 @@
 import { SplashScreen } from 'expo';
 import { createStackNavigator } from "react-navigation";
 import { applyMiddleware, combineReducers } from "redux";
-import configureStore from 'config/configureStore';
+import configureStore from './config/configureStore';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
@@ -13,11 +13,11 @@ import React from "react";
 import AppNavigator from "./navigation/AppNavigator";
 
 import reduxThunk from "redux-thunk";
-import rootSaga from 'reduxFolder/rootSaga';
+import rootSaga from './redux/rootSaga';
 import createSagaMiddleware from "redux-saga";
 
-import questionsReducer from "reduxFolder/questions/reducer";
-import userAnswersReducer from "reduxFolder/user-answers/reducer";
+import questionsReducer from "./redux/questions/reducer";
+import userAnswersReducer from "./redux/user-answers/reducer";
 import { getCurrentSession } from './utils';
 import LoginScreen from './screens/LoginScreen';
 
@@ -56,6 +56,8 @@ export default class App extends React.Component {
       loading: true,
       isLoggedIn: false
     }
+
+    this.setIsLoggedIn = this.setIsLoggedIn.bind(this);
   }
 
   async setIsLoggedIn () {
@@ -83,6 +85,10 @@ export default class App extends React.Component {
   componentDidMount() {
     this.setIsLoggedIn()
   }
+
+  componentDidUpdate() {
+    console.log('yesyes?')
+  }
   
   render() {
     return (
@@ -90,7 +96,9 @@ export default class App extends React.Component {
         { !this.state.isLoggedIn ? (
           <LoginScreen setIsLoggedIn={this.setIsLoggedIn} />
         ) : (
-          <AppWithNavigationState />
+          <AppWithNavigationState screenProps={{
+            setIsLoggedIn: this.setIsLoggedIn
+          }} />
         )}
       </Provider>
     );

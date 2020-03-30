@@ -7,13 +7,12 @@ import {
   View
 } from "react-native";
 import { Card } from "react-native-elements";
-import Question from "components/Question";
-import CardTransition from "components/CardTransition";
+import Question from "../components/Question";
+import CardTransition from "../components/CardTransition";
 import { connect } from "react-redux";
-import * as questionsActions from "reduxFolder/questions/actions";
-import * as userAnswersActions from "reduxFolder/user-answers/actions";
-import autobind from "autobind-decorator";
-import StopWatch from "components/StopWatch";
+import * as questionsActions from "../redux/questions/actions";
+import * as userAnswersActions from "../redux/user-answers/actions";
+import StopWatch from "../components/StopWatch";
 
 class StartQuizScreen extends Component {
   static navigationOptions = {
@@ -25,6 +24,8 @@ class StartQuizScreen extends Component {
     this.state = {
       currentQuestionIndex: 0
     };
+
+    this.onAnswer = this.onAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +33,6 @@ class StartQuizScreen extends Component {
     this.props.startTime();
   }
 
-  @autobind
   onAnswer(answer_) {
     const { currentQuestionIndex } = this.state;
     const item = this.props?.questions?.questionsList?.[currentQuestionIndex];

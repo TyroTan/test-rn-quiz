@@ -1,4 +1,4 @@
-import { sendGet, sendPost } from 'services/BackendFactory';
+import { sendGet, sendPost } from './BackendFactory';
 
 export function fetchQuizzes (opts) {
   return sendGet({
