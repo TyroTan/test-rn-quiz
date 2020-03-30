@@ -1,3 +1,4 @@
+import { SplashScreen } from 'expo';
 import { createStackNavigator } from "react-navigation";
 import { applyMiddleware, combineReducers } from "redux";
 import configureStore from 'config/configureStore';
@@ -11,13 +12,16 @@ import React from "react";
 
 import AppNavigator from "./navigation/AppNavigator";
 
-
 import reduxThunk from "redux-thunk";
 import rootSaga from 'reduxFolder/rootSaga';
 import createSagaMiddleware from "redux-saga";
 
 import questionsReducer from "reduxFolder/questions/reducer";
 import userAnswersReducer from "reduxFolder/user-answers/reducer";
+import { getCurrentSession } from './utils';
+import LoginScreen from './screens/LoginScreen';
+
+SplashScreen.preventAutoHide()
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -46,10 +50,48 @@ const store = configureStore(appReducer, applyMiddleware(...middlewares));
 sagaMiddleware.run(rootSaga);
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      isLoggedIn: false
+    }
+  }
+
+  async setIsLoggedIn () {
+    try {
+      const userSession = await getCurrentSession();
+      if (userSession && userSession.user_id) {
+        this.setState({
+          loading: false,
+          isLoggedIn: true
+        });
+      } else {
+        this.setState({
+          loading: false,
+          isLoggedIn: false
+        })
+      }
+    } catch (e) {
+      console.log('setIsLoggedIn e', e)
+    }
+
+
+    SplashScreen.hide()
+  }
+
+  componentDidMount() {
+    this.setIsLoggedIn()
+  }
+  
   render() {
     return (
       <Provider store={store}>
-        <AppWithNavigationState />
+        { !this.state.isLoggedIn ? (
+          <LoginScreen setIsLoggedIn={this.setIsLoggedIn} />
+        ) : (
+          <AppWithNavigationState />
+        )}
       </Provider>
     );
   }

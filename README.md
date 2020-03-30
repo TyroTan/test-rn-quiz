@@ -1,6 +1,6 @@
-# test-quiz
+# test-rn-quiz
 
-React Native 0.58 expo - Test App
+React Native expo 33 - Test App
 
 ### Requirements
 Internet (the app fetches data from a third-party api)
@@ -11,7 +11,7 @@ Use the package manager [npm](https://nodejs.org/dist/v10.15.1/node-v10.15.1.pkg
 
 ```bash
 1. Click the link above to download node.js (comes with npm)
-2. Clone this repo and cd test-quiz
+2. Clone this repo and cd test-rn-quiz
 3. Then execute from the terminal
 npm install
 npm install -g expo-cli

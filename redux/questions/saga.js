@@ -12,6 +12,7 @@ function* quizzesSaga() {
   yield takeLatest(FETCH_QUESTIONS, function*() {
     try {
       const result = yield call(fetchQuizzes);
+      console.log('resultresult', result)
       yield put({
         type: SUCCESS_QUESTIONS,
         payload: result.results
@@ -20,6 +21,7 @@ function* quizzesSaga() {
         type: DONE_QUESTIONS
       });
     } catch (e) {
+      console.log('ee', e)
       yield put({
         type: ERROR_QUESTIONS
       });
